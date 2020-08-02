@@ -48,7 +48,6 @@
                         <label class="col-sm-2  col-form-label" for="example-password">Role</label>
                         <div class="col-sm-10">
                             <select class="form-control select2" id="mySelectBox" name="role">
-                                <option></option>
                                 @foreach(\Spatie\Permission\Models\Role::all() as $role)
                                     <option value="{{$role->name}}">{{$role->name}}</option>
                                 @endforeach

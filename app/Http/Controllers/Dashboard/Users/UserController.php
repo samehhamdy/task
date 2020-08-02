@@ -50,7 +50,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $user = User::create(array_merge($request->validated(),['password'=>Hash::make($request->password)]));
-        if ($request->role){
+        if ($request->has('role')){
             $role = Role::where('name',$request->role)->first();
             $user->syncRoles($role);
             $user->givePermissionTo($role->permissions);
@@ -116,7 +116,7 @@ class UserController extends Controller
         return redirect()->back()->with('msg','User Deleted Successfully');
     }
 
-    public function admins(Request $request){
+    public function admins(){
         $role = Role::where('name','admin')->first();
         if ($role){
             $users = User::role('admin')->get();

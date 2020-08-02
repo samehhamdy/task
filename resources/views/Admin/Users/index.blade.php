@@ -13,11 +13,7 @@
 
                 <h4 class="mt-0 header-title" style="display: inline">crud users table</h4>
                 @can('create user')
-                    @if(request()->segment(count(request()->segments())) == 'admins')
-                        <a href="{{route('users.create')}}" class="btn btn-primary" style="float: right" >New Admin</a>
-                        @else
-                        <a href="{{route('users.create')}}" class="btn btn-primary" style="float: right" >New User</a>
-                    @endif
+                <a href="{{route('users.create')}}" class="btn btn-primary" style="float: right" >New User</a>
                 @endcan
                 <p class="text-muted font-14 mb-3">
                     this is table to do all crud actions on users model create,edit and delete.
