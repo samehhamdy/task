@@ -48,7 +48,7 @@
 
         <!-- LOGO -->
         <div class="logo-box">
-            <a href="index.blade.php" class="logo text-center">
+            <a href="{{url('/dashboard')}}" class="logo text-center">
                 <span class="logo-lg">
                     <img src="{{url('/')}}/assets/images/logo-light.png" alt="" height="16">
                     <!-- <span class="logo-lg-text-light">UBold</span> -->

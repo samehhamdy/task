@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="card-body">
                                     <a href="{{route('photos',$album->id)}}"><h4> {{$album->name}}</h4></a>
-                                    <h6 class="main-color">{{$album->type}}</h6>
+                                    <h6 class="main-color">{{$album->user->name}}</h6>
                                     @if(auth()->user() && auth()->user()->id == $album->user_id)
                                         <a href="{{route('albums.show',$album->id)}}" style="color: white" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                                         <form method="post" action="{{route('albums.destroy',$album->id)}}" style="display: inline;color: white">

@@ -81,76 +81,74 @@
     <div class="col-xl-6">
         <div class="card-box">
             <h4 class="header-title mt-0 mb-3">Pie chart for private and public albums</h4>
-            <div class="ct-chart-2 ct-perfect-fourth"></div>
+            <canvas id="myChart2" width="400" height="400"></canvas>
         </div>
     </div>
 
     <div class="col-xl-6">
         <div class="card-box">
-            <h4 class="header-title mt-0 mb-3">Pie chart for Users,Albums and Photos</h4>
-            <div class="ct-chart ct-perfect-fourth"></div>
+            <h4 class="header-title mt-0 mb-3">Pie chart for private and public albums</h4>
+            <canvas id="myChart" width="400" height="400"></canvas>
         </div>
     </div>
 </div>
 
-<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
 
 <script>
-    var data = {
-        labels: ['public', 'private'],
-        series: [{{\App\Models\Album::where('type','public')->count()}}, {{\App\Models\Album::where('type','private')->count()}}]
-    };
 
-    var options = {
-        labelInterpolationFnc: function(value) {
-            return value[0]
-        }
-    };
-
-    var responsiveOptions = [
-        ['screen and (min-width: 640px)', {
-            chartPadding: 30,
-            labelOffset: 100,
-            labelDirection: 'explode',
-            labelInterpolationFnc: function(value) {
-                return value;
+    var ctx = document.getElementById('myChart2').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['public', 'private'],
+            datasets: [{
+                label: 'types of Albums',
+                data: [{{\App\Models\Album::where('type','public')->count()}}, {{\App\Models\Album::where('type','private')->count()}}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
             }
-        }],
-        ['screen and (min-width: 1024px)', {
-            labelOffset: 80,
-            chartPadding: 20
-        }]
-    ];
-
-    new Chartist.Pie('.ct-chart-2', data, options, responsiveOptions);
-
-    var data = {
-        labels: ['Users', 'Albums', 'Photos'],
-        series: [{{\App\Models\User::count()}}, {{\App\Models\Album::count()}}, {{\App\Models\Photo::count()}}]
-    };
-
-    var options = {
-        labelInterpolationFnc: function(value) {
-            return value[0]
         }
-    };
+    });
 
-    var responsiveOptions = [
-        ['screen and (min-width: 640px)', {
-            chartPadding: 30,
-            labelOffset: 100,
-            labelDirection: 'explode',
-            labelInterpolationFnc: function(value) {
-                return value;
-            }
-        }],
-        ['screen and (min-width: 1024px)', {
-            labelOffset: 80,
-            chartPadding: 20
-        }]
-    ];
-
-    new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
+    var ctx2 = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: ['Users', 'Albums', 'Photos'],
+            datasets: [{
+                label: 'percent',
+                data: [{{\App\Models\User::count()}}, {{\App\Models\Album::count()}}, {{\App\Models\Photo::count()}}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+    });
 </script>
 
 
