@@ -44,6 +44,8 @@ Route::group(['prefix' => 'dashboard' , 'middleware' => ['admin.auth'], 'namespa
 
     Route::resource('/users','Users\UserController');
 
+    Route::get('/admins','Users\UserController@admins');
+
     Route::resource('/roles','Roles\RoleController');
 
     Route::get('/albums','Albums\AlbumController@index');

@@ -114,4 +114,15 @@ class UserController extends Controller
         $user->delete();
         return redirect()->back()->with('msg','User Deleted Successfully');
     }
+
+    public function admins(){
+        $role = Role::where('name','admin')->first();
+        if ($role){
+            $users = User::role('admin')->get();
+            return view('Admin.Users.index',['users'=>$users]);
+        }else{
+            abort(404);
+        }
+
+    }
 }
