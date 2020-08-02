@@ -15,6 +15,10 @@
                     </li>
 
                     <li class="has-submenu">
+                        <a href="{{'/dashboard/admins'}}"><i class="mdi mdi-block-helper"></i>Admins</a>
+                    </li>
+
+                    <li class="has-submenu">
                         <a> <i class="mdi mdi-account"></i>User Interface  <div class="arrow-down"></div></a>
                         <ul class="submenu megamenu">
                             <li>

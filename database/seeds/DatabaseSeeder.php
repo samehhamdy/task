@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // create permissions
+        $index_admin = Permission::create(['name' => 'index admin']);
         $index_user = Permission::create(['name' => 'index user']);
         $create_user = Permission::create(['name' => 'create user']);
         $edit_user = Permission::create(['name' => 'edit user']);

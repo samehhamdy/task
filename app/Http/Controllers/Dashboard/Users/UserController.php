@@ -21,6 +21,7 @@ class UserController extends Controller
         $this->middleware('permission:edit user',   ['only' => ['edit']]);
         $this->middleware('permission:edit user',   ['only' => ['update']]);
         $this->middleware('permission:index user',   ['only' => ['index']]);
+        $this->middleware('permission:index admin',   ['only' => ['admins']]);
         $this->middleware('permission:delete user',   ['only' => ['destroy']]);
     }
 
